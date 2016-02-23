@@ -5,6 +5,8 @@ header {
   height: 4em;
   overflow: hidden;
   background-color: $orange;
+  position: relative;
+  box-shadow: 0 5px 10px $dark;
 }
 
 #logo {
@@ -18,11 +20,12 @@ header {
 
 nav {
   float: right;
-  //margin-top: 1.1em;
   @include vertical-align;
-  .button:hover {
-    background-color: transparent;
-    border-color: $dark-blue;
+  .button {
+    border: solid 2px $dark-blue;
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
