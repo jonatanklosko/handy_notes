@@ -1,0 +1,39 @@
+/* Navigation */
+
+header {
+  padding: 0 10%;
+  height: 4em;
+  overflow: hidden;
+  background-color: $orange;
+}
+
+#logo {
+  float: left;
+  @include vertical-align;
+  a {
+    font-size: 3.7em;
+    color: $dark;
+  }
+}
+
+nav {
+  float: right;
+  //margin-top: 1.1em;
+  @include vertical-align;
+  .button:hover {
+    background-color: transparent;
+    border-color: $dark-blue;
+  }
+}
+
+/* Footer */
+footer {
+  @extend .clearfix;
+  margin-top: 2em;
+  padding: 1em 10%;
+  background-color: $dark;
+  color: white;
+  #copyright {
+    float: right;
+  }
+}

@@ -1,0 +1,62 @@
+#hero {
+  width: 100%;
+  padding: 10%;
+  background-image: image-url("hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 75%;
+  #signup-box {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 1em;
+    text-align: center;
+    color: white;
+    background-color: rgba(0,0,0,0.4);
+    @include border-radius(10px);
+  }
+}
+
+#features {
+  @extend .clearfix;
+  box-shadow: 0 -5px 10px $dark;
+  padding: 2em 8%;
+  .feature {
+    @extend .clearfix;
+    float: left;
+    margin-left: 5%;
+    padding: 1%;
+    width: 30%;
+    text-align: center;
+    @include border-radius(10px);
+    .icon-img {
+      font-size: 5em;
+      display: block;
+    }
+    h3 {
+      color: white;
+    }
+    &:first-of-type {
+      margin-left: 0;
+      background-color: $orange;
+      .icon-img {
+        font-size: 4em;
+      }
+    }
+    &:nth-of-type(2) { background-color: $dark-blue; }
+    &:nth-of-type(3) { background-color: $green; }
+  }
+}
+
+/* Responsiveness */
+
+@media screen and (max-width: 750px) {
+  #features .feature {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 2em;
+  }
+  #hero #signup-box {
+    width: 90%;
+  }
+}
