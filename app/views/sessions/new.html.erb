@@ -1,0 +1,16 @@
+<% provide :title, "Sign in" %>
+
+<div class="form-wrapper">
+  <div class="form">
+    <%= form_for :user, url: signin_path do |f| %>
+    
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      
+      <%= f.submit "Sign in", class: "button" %>
+    <% end %>
+  </div>
+</div>

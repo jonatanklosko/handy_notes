@@ -2,8 +2,9 @@
 
 .form-wrapper {
   margin: 2.8em 0;
-  padding: 0 30%;
+  padding: 0 35%;
   .form {
+    vertical-align: middle;
     background-color: $purple;
     color: white;
     width: 100%;
@@ -38,6 +39,12 @@
 }
 
 /* Responsiveness */
+
+@media screen and (max-width: 1500px) {
+  .form-wrapper {
+    padding: 0 30%;
+  }
+}
 
 @media screen and (max-width: 1100px) {
   .form-wrapper {

@@ -5,6 +5,15 @@
     <% end %>
   </div>
   <nav>
-    <a href="#" class="button">Sign in</a>
+    <% if signed_in? %>
+      <%= link_to "#" do %>
+        <i class="fa fa-cog" title="Account Settings"></i>
+      <% end %>
+      <%= link_to signout_path, method: :delete do %>
+        <i class="fa fa-sign-out" title="Sign out"></i>
+      <% end %>
+    <% else %>
+      <%= link_to "Sign in", signin_path, class: "button" %>
+    <% end %>
   </nav>
 </header>

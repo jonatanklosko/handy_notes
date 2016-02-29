@@ -30,6 +30,19 @@ nav {
       background-color: transparent;
     }
   }
+  a {
+    font-size: 2.5em;
+    color: $dark;
+    text-decoration: none;
+    @include transition(color 0.3s ease-in-out);
+    &:hover {
+      color: $blue;
+    }
+    margin-right: 0.5em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 /* Alerts */
