@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   
-  has_secure_password
-  
   # Validations
-  validates :username, presence: true, format: { with: /\A[\w\-]{6,20}\z/i },
-                       uniqueness: { case_sensitive: false }
+  validates :username, presence: true, format: { with: /\A[\w\-]+\z/i },
+                       length: { in: 6..20 }, uniqueness: { case_sensitive: false }
                        
   validates :email, format: { with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i },
                     uniqueness: { case_sensitive: false }
                     
+  has_secure_password
+  
   validates :password, presence: true, allow_nil: true, length: { minimum: 6 }
   
   # Methods

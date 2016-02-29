@@ -1,12 +1,14 @@
 /* Navigation */
 
 header {
+  position: relative;
+  z-index: 100;
   padding: 0 10%;
   height: 4em;
   overflow: hidden;
-  background-color: $orange;
+  background-color: $light-blue;
   position: relative;
-  box-shadow: 0 5px 10px $dark;
+  box-shadow: 0 2px 5px $dark;
 }
 
 #logo {
@@ -15,6 +17,7 @@ header {
   a {
     font-size: 3.7em;
     color: $dark;
+    outline: none;
   }
 }
 
@@ -22,21 +25,77 @@ nav {
   float: right;
   @include vertical-align;
   .button {
-    border: solid 2px $dark-blue;
+    border: solid 2px $purple;
     &:hover {
       background-color: transparent;
     }
   }
 }
 
+/* Alerts */
+
+#alerts {
+  .alert {
+    @extend .clearfix;
+    padding: 0.5em 10%;
+    div {
+      float: left;
+      &:before {
+        font-family: FontAwesome;
+        margin-right: 0.5em;
+      }
+    }
+    i {
+      float: right;
+      font-size: 1.5em;
+      color: white;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .alert-success {
+    background-color: $green;
+    div:before { content: "\f058"; }
+  }
+  .alert-error {
+    background-color: $red;
+    div:before { content: "\f06a"; }
+  }
+  .alert-info {
+    background-color: $blue;
+    div:before { content: "\f05a"; }
+  };
+  .alert-warning {
+    background-color: $yellow;
+    div:before { content: "\f071"; }
+  };
+}
+
+/* Content */
+
+#main-content {
+  @extend .clearfix;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 4em;
+  margin-top: -4em;
+  padding-bottom: 3em;
+  margin-bottom: -3em;
+}
+
 /* Footer */
+
 footer {
   @extend .clearfix;
-  margin-top: 2em;
-  padding: 1em 10%;
+  position: relative;
+  z-index: 100;
+  height: 3em;
+  padding: 0 10%;
   background-color: $dark;
   color: white;
   #copyright {
+    @include vertical-align;
     float: right;
   }
 }
