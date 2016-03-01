@@ -3,7 +3,7 @@
     <% flash.each do |message_type, message| %>
       <%= content_tag :div, class: "alert alert-#{message_type}" do %>
         <%= content_tag :div, message %>
-        <i class="fa fa-times-circle hide-alert"></i>
+        <%= icon('times-circle', class: "hide-alert") %>
       <% end %>
     <% end %>
   </div>

@@ -1,17 +1,14 @@
 <header class="clearfix">
   <div id="logo">
     <%= link_to root_path do %>
-      <i class="fa fa-pencil-square-o"></i>
+      <%= icon('edit') %>
     <% end %>
   </div>
   <nav>
     <% if signed_in? %>
-      <%= link_to "#" do %>
-        <i class="fa fa-cog" title="Account Settings"></i>
-      <% end %>
-      <%= link_to signout_path, method: :delete do %>
-        <i class="fa fa-sign-out" title="Sign out"></i>
-      <% end %>
+      <%= link_to icon('cog', title: "Account Settings"), "#" %>
+      <%= link_to icon('sign-out', title: "Sign out"),
+                  signout_path, method: :delete %>
     <% else %>
       <%= link_to "Sign in", signin_path, class: "button" %>
     <% end %>
