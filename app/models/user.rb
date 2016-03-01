@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessor :activation_token, :remember_token
   
-  attr_accessor :activation_token
   # Validations
   
   validates :username, presence: true, format: { with: /\A[\w\-]+\z/i },
@@ -51,6 +51,17 @@ class User < ActiveRecord::Base
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
+  end
+  
+  # Sets a new value for remember token and corresponding digest in database.
+  def remember
+    self.remember_token = User.new_token
+    update_attribute :remember_digest, User.digest(self.remember_token)
+  end
+  
+  # Sets remembet digest in database to nil.
+  def forget
+    update_attribute :remember_digest, nil
   end
   
   private

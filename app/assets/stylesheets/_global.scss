@@ -113,7 +113,27 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   font-weight: 600;
   @include transition(box-shadow 0.15s);
   &:focus {
-    box-shadow: 0 0 8px darken($light-grey, 20%);
+    box-shadow: 0 0 8px $light-blue;
+  }
+}
+    
+input[type="checkbox"] {
+  display: none;
+  &:not(checked) + label {
+    cursor: pointer;
+    &:before {
+      margin-right: 0.5em;
+      cursor: pointer;
+      font-family: FontAwesome;
+      content: "\f0c8";
+      @include transition(text-shadow 0.15s);
+    }
+    &:hover:before {
+      text-shadow: 0 0 8px $light-blue;
+    }
+  }
+  &:checked + label:before {
+    content: "\f14a";
   }
 }
 

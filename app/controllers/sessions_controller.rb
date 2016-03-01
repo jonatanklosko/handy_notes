@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     
     if @user && @user.authenticate(params[:user][:password])
       if @user.activated?
+        remember @user if params[:user][:remember] == "1"
         sign_in @user
         flash[:success] = "Welcome back #{@user.username}"
         redirect_to root_url
