@@ -77,4 +77,22 @@ RSpec.describe User, type: :model do
       expect(build(:user, password: "a" * 5)).to_not be_valid
     end
   end
+  
+  describe "activation_digest" do
+    context "when user is created" do
+      it "should not be nil" do
+        user = create(:user)
+        expect(user.activation_digest).to_not be_nil
+      end
+    end
+  end
+  
+  describe "#send_activation_email" do
+    it "sends the email" do
+      user = create(:user)
+      expect {
+        user.send_activation_email
+      }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end

@@ -26,10 +26,20 @@ feature "User signs in" do
     expect_user_to_be_signed_out
   end
   
+  scenario "as unactivated user" do
+    create_user 'sherlock', 'password', activated: false
+    sign_in_with 'sherlock', 'password'
+    
+    expect_page_to_display_activation_error
+    expect_user_to_be_signed_out
+  end
+  
   private
   
-    def create_user(username, password)
-      create(:user, username: username, password: password)
+    def create_user(username, password, options={activated: true})
+      activated_at = options[:activated] ? Time.now : nil
+      create(:user, username: username, password: password,
+                    activated_at: activated_at)
     end
     
     def sign_in_with(username, password)
@@ -51,5 +61,9 @@ feature "User signs in" do
     
     def expect_page_to_display_sign_in_error
       expect(page).to have_content "Invalid username/password combination"
+    end
+    
+    def expect_page_to_display_activation_error
+      expect(page).to have_content "You haven't activated your account yet"
     end
 end

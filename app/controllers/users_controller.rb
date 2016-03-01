@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      flash[:success] = "Account has been created." # Later: "An email has been send"
-      # TODO: send activation email
+      flash[:info] = "An activation link has been sent. Please check your mailbox."
+      @user.send_activation_email
       redirect_to root_url
     else
       render 'new'

@@ -7,9 +7,14 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
     
     if @user && @user.authenticate(params[:user][:password])
-      sign_in @user
-      flash[:success] = "Welcome back #{@user.username}"
-      redirect_to root_url
+      if @user.activated?
+        sign_in @user
+        flash[:success] = "Welcome back #{@user.username}"
+        redirect_to root_url
+      else
+        flash[:warning] = "You haven't activated your account yet. Please check your mailbox."
+        render 'new'
+      end
     else
       flash.now[:error] = "Invalid username/password combination"
       render 'new'

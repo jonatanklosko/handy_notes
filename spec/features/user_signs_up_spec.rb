@@ -1,9 +1,17 @@
 require 'rails_helper'
 
 feature "User signs up" do
-  scenario "Signing up with valid informations" do
-    sign_up
-    expect(page).to have_content "Account has been created"
+  include EmailSpec::Helpers
+  include EmailSpec::Matchers
+  
+  scenario "with valid informations" do
+    sign_up_with email: "sholmes@example.com"
+    expect(page).to have_content "An activation link has been sent"
+    expect_user_to_be_signed_out
+
+    visit_in_email("Activate", "sholmes@example.com")
+    expect(page).to have_content "Your account has been activated!"
+    expect_user_to_be_signed_in
   end
   
   scenario "with blank name" do
@@ -43,14 +51,23 @@ feature "User signs up" do
     expect(page).to have_content 'Email has already been taken'
   end
   
-  def sign_up(user_params = {})
-    user = build(:user, user_params)
-    visit signup_path
-    fill_in 'Username', with: user.username
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
-  end
-  alias_method :sign_up_with, :sign_up
+  private
+  
+    def sign_up_with(user_params = {})
+      user = build(:user, user_params)
+      visit signup_path
+      fill_in 'Username', with: user.username
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
+    end
+    
+    def expect_user_to_be_signed_in
+      expect(page).to have_link(nil, href: signout_path)
+    end
+    
+    def expect_user_to_be_signed_out
+      expect(page).to have_link(nil, href: signin_path)
+    end
 end

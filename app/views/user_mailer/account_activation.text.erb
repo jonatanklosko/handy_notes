@@ -1,0 +1,8 @@
+Welcome to Handy Notes <%= @user.username %>
+
+We hope you will enjoy working with our application.
+Please go to the link below to activate your account.
+
+
+<%= account_activation_url(@user.activation_token,
+                           email: @user.email) %>

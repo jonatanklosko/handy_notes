@@ -39,6 +39,22 @@ RSpec.describe SessionsController, type: :controller do
         expect(flash[:error]).to_not be_empty
       end
     end
+    
+    context "as unactivated user" do
+      before do
+        create(:user, username: "sherlock", password: "password",
+                      activated_at: nil)
+        post :create, user: { username: "sherlock", password: "password" }
+      end
+      
+      it "re-renders new action" do
+        expect(response).to render_template :new
+      end
+      
+      it "flash[:warning] contains message" do
+        expect(flash[:warning]).to_not be_empty
+      end
+    end
   end
   
   describe "DELETE #destroy" do

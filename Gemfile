@@ -17,6 +17,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.6'
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'email_spec', '~> 2.0'
 end
 
 group :development do
