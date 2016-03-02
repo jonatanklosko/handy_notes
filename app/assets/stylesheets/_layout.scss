@@ -18,6 +18,9 @@ header {
     font-size: 3.7em;
     color: $dark;
     outline: none;
+    &:hover {
+      color: black;
+    }
   }
 }
 
