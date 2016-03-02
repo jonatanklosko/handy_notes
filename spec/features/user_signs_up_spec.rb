@@ -9,7 +9,8 @@ feature "User signs up" do
     expect(page).to have_content "An activation link has been sent"
     expect_user_to_be_signed_out
 
-    visit_in_email("Activate", "sholmes@example.com")
+    open_last_email_for "sholmes@example.com"
+    click_first_link_in_email
     expect(page).to have_content "Your account has been activated!"
     expect_user_to_be_signed_in
   end
@@ -61,13 +62,5 @@ feature "User signs up" do
       fill_in 'Password', with: user.password
       fill_in 'Password confirmation', with: user.password_confirmation
       click_on 'Sign up'
-    end
-    
-    def expect_user_to_be_signed_in
-      expect(page).to have_link(nil, href: signout_path)
-    end
-    
-    def expect_user_to_be_signed_out
-      expect(page).to have_link(nil, href: signin_path)
     end
 end

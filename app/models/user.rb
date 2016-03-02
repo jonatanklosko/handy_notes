@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :activation_token, :remember_token
+  attr_accessor :activation_token, :remember_token, :reset_token
   
   # Validations
   
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     !self.activated_at.nil?
   end
   
-  # Sends an email to the user with account activation link.
+  # Sends an email to the user with an account activation link.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
@@ -62,6 +62,19 @@ class User < ActiveRecord::Base
   # Sets remembet digest in database to nil.
   def forget
     update_attribute :remember_digest, nil
+  end
+  
+  # Sends an email to the user with a password reset link.
+  def send_password_reset_email
+    self.reset_token = User.new_token
+    update_attribute :reset_digest, User.digest(self.reset_token)
+    update_attribute :reset_sent_at, Time.now
+    UserMailer.password_reset(self).deliver_now
+  end
+  
+  # Returns true if the password reset token has expired.
+  def password_reset_expired?
+    self.reset_sent_at < 24.hours.ago
   end
   
   private

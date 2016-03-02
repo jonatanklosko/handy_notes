@@ -38,6 +38,9 @@ nav {
     &:hover {
       color: $blue;
     }
+    &:hover .fa-log-out {
+      @extend .fa-spin;
+    }
     margin-right: 0.5em;
     &:last-child {
       margin-right: 0;

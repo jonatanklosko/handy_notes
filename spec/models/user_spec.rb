@@ -95,4 +95,13 @@ RSpec.describe User, type: :model do
       }.to change{ ActionMailer::Base.deliveries.count }.by(1)
     end
   end
+  
+  describe "##send_password_reset_email" do
+    it "sends the email" do
+      user = create(:user)
+      expect {
+        user.send_password_reset_email
+      }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end

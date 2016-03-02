@@ -1,0 +1,13 @@
+<% provide :title, "Password reset" %>
+
+<div class="form-wrapper">
+  <div class="form">
+    <%= form_for :user, url: password_resets_path do |f| %>
+    
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      
+      <%= f.submit "Send me reset link", class: "button" %>
+    <% end %>
+  </div>
+</div>

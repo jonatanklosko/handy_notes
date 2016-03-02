@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete 'signout' => 'sessions#destroy'
   
   resources :account_activations, only: [:show]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end

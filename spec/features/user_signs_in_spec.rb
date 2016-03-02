@@ -52,24 +52,6 @@ feature "User signs in" do
       create(:user, username: username, password: password)
     end
     
-    def sign_in_with(username, password, options={})
-      visit signin_path
-      within ".form" do
-        fill_in "Username", with: username
-        fill_in "Password", with: password
-        check 'Remember me' if options[:remember_me]
-        click_on "Sign in"
-      end
-    end
-  
-    def expect_user_to_be_signed_in
-      expect(page).to have_link(nil, href: signout_path)
-    end
-    
-    def expect_user_to_be_signed_out
-      expect(page).to have_link(nil, href: signin_path)
-    end
-    
     def expect_page_to_display_sign_in_error
       expect(page).to have_content "Invalid username/password combination"
     end
