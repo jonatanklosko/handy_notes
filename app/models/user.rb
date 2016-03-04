@@ -77,6 +77,11 @@ class User < ActiveRecord::Base
     self.reset_sent_at < 24.hours.ago
   end
   
+  # Overridden in order to use username in urls instead of id.
+  def to_param
+    self.username
+  end
+  
   private
   
     # Before filters implementations

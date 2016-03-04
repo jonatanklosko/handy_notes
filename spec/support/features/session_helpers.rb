@@ -1,18 +1,27 @@
 module Features
   module SessionHelpers
     
-        
-    def sign_in_with(username, password, options={})
+    def sign_in(user)
+      visit signin_path
+      within ".form" do
+        fill_in "Username", with: user.username
+        fill_in "Password", with: user.password
+        click_on "Sign in"
+      end
+    end
+    
+    def sign_in_with(username, password, remember: false)
       visit signin_path
       within ".form" do
         fill_in "Username", with: username
         fill_in "Password", with: password
-        check 'Remember me' if options[:remember_me]
+        check 'Remember me' if remember
         click_on "Sign in"
       end
     end
     
     def sign_out
+      visit root_url
       within("header") { click_link(nil, href: signout_path) }
     end
     

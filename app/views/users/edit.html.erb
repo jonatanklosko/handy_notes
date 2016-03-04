@@ -1,0 +1,48 @@
+<%= provide :title, "Settings" %>
+
+<div class="settings">
+  <section class="general">
+    <h2><%= icon('user') %> General</h2>
+    <% if params[:update_section] == "general"  %>
+      <%= render 'user_error_messages' %>
+    <% end %>
+    <div class="form">
+      <%= form_for @user, url: update_user_path(params[:username]) do |f| %>
+      
+        <%= hidden_field_tag :update_section, "general" %>
+        
+        <%= f.label :username, "Username" %>
+        <%= f.text_field :username %>
+        
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        
+        <%= f.submit "Update" %>
+      <% end %>
+    </div>
+  </section>
+  <section class="password">
+    <h2><%= icon('lock') %> Password</h2>
+    <% if params[:update_section] == "password"  %>
+      <%= render 'user_error_messages' %>
+    <% end %>
+    <div class="form">
+      <%= form_for @user, url: update_user_path(params[:username]) do |f| %>
+      
+        <%= hidden_field_tag :update_section, "password" %>
+      
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password %>
+        <br />
+        
+        <%= f.label :password, "New password" %>
+        <%= f.password_field :password %>
+        
+        <%= f.label :password_confirmation, "New password confirmation" %>
+        <%= f.password_field :password_confirmation %>
+        
+        <%= f.submit "Update password" %>
+      <% end %>
+    </div>
+  </section>
+</div>

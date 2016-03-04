@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   
   get 'signup' => 'users#new'
   post 'signup' => 'users#create'
+  get 'users/:username' => 'users#show', as: :user
+  get 'users/:username/settings' => 'users#edit', as: :user_settings
+  patch 'users/:username' => 'users#update', as: :update_user
   
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'

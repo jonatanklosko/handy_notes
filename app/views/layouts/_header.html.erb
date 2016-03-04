@@ -6,7 +6,8 @@
   </div>
   <nav>
     <% if signed_in? %>
-      <%= link_to icon('cog', title: "Account Settings"), "#" %>
+      <%= link_to icon('cog', title: "Account Settings"),
+                  user_settings_path(current_user) %>
       <%= link_to icon('sign-out', title: "Sign out"),
                   signout_path, method: :delete %>
     <% else %>

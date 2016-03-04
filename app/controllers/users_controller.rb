@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user, :find_user, :correct_user,
+                only: [:show, :edit, :update]
   
   def new
     @user = User.new
@@ -16,10 +18,49 @@ class UsersController < ApplicationController
     end
   end
   
+  def show
+  end
+  
+  def edit
+  end
+  
+  def update
+    case params[:update_section]
+    when "general"
+    when "password"
+      if !@user.authenticate(params[:user][:current_password])
+        @user.errors.add :current_password, "is incorrect"
+      elsif params[:user][:password].empty?
+        @user.errors.add :password, "can't be empty"
+      end
+    else
+      redirect_to root_url
+    end
+    
+    if @user.errors.empty? && @user.update_attributes(user_params)
+      flash.now[:success] = "Account updated."
+      params[:username] = @user.username
+    end
+    render 'edit'
+  end
+  
   private
   
     def user_params
       params.require(:user).permit(:username, :email,
                                    :password, :password_confirmation)
+    end
+    
+    # Before filters
+    
+    def find_user
+      @user = User.find_by(username: params[:username])
+      redirect_to root_url unless @user
+    end
+    
+    # Requires the current user to be the same one
+    # for which the action is performed.
+    def correct_user
+      redirect_to root_url if params[:username] != current_user.username
     end
 end
