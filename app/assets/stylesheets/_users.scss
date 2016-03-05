@@ -4,8 +4,8 @@
   padding: 2em 35%;
   .form {
     vertical-align: middle;
-    background-color: $purple;
-    color: white;
+    background-color: $blue;
+    color: $white;
     width: 100%;
     margin: 0 auto;
     @include border-radius(10px);
@@ -13,9 +13,10 @@
     .label-link {
       float: right;
       text-decoration: none;
-      color: white;
+      color: $white;
+      @include transition(color 0.3s, ease-in-out);
       &:hover {
-        color: $light-grey;
+        color: $light;
       }
     }
   }
@@ -28,7 +29,7 @@
     padding: 2em;
     @include border-radius(10px);
     background-color: $dark;
-    color: white;
+    color: $white;
     input[type="submit"] {
       @include button($green);
     }
@@ -47,7 +48,7 @@
   margin-bottom: 1em;
   padding: 1em 1em;
   @include border-radius(10px);
-  background-color: white;
+  background-color: $white;
   border: 2px solid $red;
   color: $red;
   .error-messages {

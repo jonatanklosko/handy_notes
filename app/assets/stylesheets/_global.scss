@@ -1,14 +1,16 @@
 /* Variables */
 
-$blue: #556ED2;
-$brown: #ae0000;
-$dark: #222222;
-$green: #0BDA3B;
-$light-blue: #BAC7FB;
-$light-grey: #DBDBDB;
-$purple: #58488A;
-$red: #E74C3C;
+$blue: #3F91EB;
+$green: #38E075;
+$red: #FF4D63;
 $yellow: #F8EB62;
+
+$dark: #404040;
+$middark: #666666;
+$midlight: #999999;
+$light: #DDDDDD;
+$almost-white: #FAFAFA;
+$white: #FFFFFF;
 
 /* Mixins */
 
@@ -43,18 +45,18 @@ $yellow: #F8EB62;
   @include border-radius(10px);
   font-size: 1.2em;
   @include transition(background-color 0.3s ease-in-out);
-  color: white;  
+  color: $white;  
   border: none;
   outline: none;
   background-color: $color;
   &:hover {
-    color: white;
-    background-color: lighten($color, 10%);
+    color: $white;
+    background-color: darken($color, 4%);
   }
 }
 
 .button {
-  @include button($purple);
+  @include button($blue);
 }
 
 
@@ -73,6 +75,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 17px;
   color: $dark;
+  background-color: $almost-white;
 }
 
 main, section, footer, aside {
@@ -108,12 +111,12 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   outline: none;
   border: none;
   @include border-radius(10px);
-  background-color: white;
+  background-color: $white;
   color: $dark;
   font-weight: 600;
   @include transition(box-shadow 0.15s);
   &:focus {
-    box-shadow: 0 0 8px $light-blue;
+    box-shadow: 0 0 8px $white;
   }
 }
     
@@ -126,10 +129,10 @@ input[type="checkbox"] {
       cursor: pointer;
       font-family: FontAwesome;
       content: "\f0c8";
-      @include transition(text-shadow 0.15s);
+      @include transition(text-shadow 0.3s, ease-in-out);
     }
     &:hover:before {
-      text-shadow: 0 0 8px $light-blue;
+      text-shadow: 0 0 8px $white;
     }
   }
   &:checked + label:before {
@@ -139,7 +142,7 @@ input[type="checkbox"] {
 
 .field_with_errors label {
   &:after {
-    color: white;
+    color: $white;
     margin-left: 0.5em;
     font-family: FontAwesome;
     content: "\f06a";
@@ -150,7 +153,4 @@ input[type="submit"] {
   width: 100%;
   margin-top: 2em;
   @include button($dark);
-  &:hover {
-    background-color: black;
-  }
 }
