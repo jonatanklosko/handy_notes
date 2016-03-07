@@ -51,7 +51,7 @@ $white: #FFFFFF;
   background-color: $color;
   &:hover {
     color: $white;
-    background-color: darken($color, 4%);
+    background-color: darken($color, 7%);
   }
 }
 
@@ -74,6 +74,7 @@ html, body {
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 17px;
+  font-weight: bold;
   color: $dark;
   background-color: $almost-white;
 }
@@ -113,7 +114,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   @include border-radius(10px);
   background-color: $white;
   color: $dark;
-  font-weight: 600;
+  font-weight: bold;
   @include transition(box-shadow 0.15s);
   &:focus {
     box-shadow: 0 0 8px $white;

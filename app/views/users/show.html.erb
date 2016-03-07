@@ -1,0 +1,12 @@
+<%= provide :title, "Dashboard" %>
+
+<aside id="toolkit">
+  <div class="options">
+    <%= link_to new_note_path, class: "option" do %>
+      <div><%= icon('sticky-note') %>Note</div>
+    <% end %>
+    <%= link_to "#", class: "option" do %>
+      <div><%= icon('list') %>Checklist</div>
+    <% end %>
+  </div>
+</aside>

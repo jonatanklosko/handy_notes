@@ -1,0 +1,27 @@
+#toolkit {
+  position: fixed;
+  height: 100%;
+  min-width: 15%;
+  background-color: $almost-white;
+  box-shadow: 1.5px 0 4px transparentize($midlight, 0.85);
+  color: $dark;
+  i {
+    color: $green;
+    margin-right: 0.5em;
+  }
+  font-size: 1.2em;
+  .options {
+    .option {
+      display: block;
+      padding: 0.5em;
+      text-decoration: none;
+      color: $middark;
+      @include transition(background-color 0.3s ease-in-out,
+                          color 0.3s ease-in-out);
+      &:hover {
+        background-color: $middark;
+        color: $almost-white;
+      }
+    }
+  }
+}

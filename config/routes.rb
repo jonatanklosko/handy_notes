@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   
   resources :account_activations, only: [:show]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  
+  scope ':username' do
+    resources :notes, param: :slug, except: [:index]
+  end
 end

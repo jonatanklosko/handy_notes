@@ -1,0 +1,13 @@
+<% provide :title, "New note" %>
+
+<div class="note-form">
+  <%= form_for @note do |f| %>
+    
+    <%= f.text_field :title, placeholder: "Title" %>
+    
+    <%= f.text_area :content, placeholder: "I would like to be a content",
+                              rows: "12" %>
+    
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

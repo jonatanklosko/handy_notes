@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessor :activation_token, :remember_token, :reset_token
   
+  # Associations
+  
+  has_many :notes, dependent: :destroy
+  
   # Validations
   
   validates :username, presence: true, format: { with: /\A[\w\-]+\z/i },
