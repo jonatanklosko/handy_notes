@@ -42,7 +42,7 @@ feature "User signs in" do
     
     expect_user_to_be_signed_in
     expire_cookies # simulate browser restart (remove session cookies)
-    visit root_url
+    visit root_path
     expect_user_to_be_signed_in
   end
   

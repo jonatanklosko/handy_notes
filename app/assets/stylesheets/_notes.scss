@@ -1,12 +1,10 @@
+/* Create/Edit page */
+
 .note-form {
-  margin: 2em 10%;
-  padding: 2em;
-  background-color: $dark;
-  @include border-radius(10px);
   text-align: center;
-  textarea {
-    word-wrap: break-word;
-    resize: vertical;
+  margin: 0.5em 15% 2em 15%;
+  textarea, input[type="text"] {
+    box-shadow: 0 0 25px transparentize($light, 0.2);
   }
   input[type="submit"] {
     @include button($red);
@@ -18,9 +16,50 @@
 
 /* Responsiveness */
 
-@media screen and (max-width: 500px) {
-  .note-form {
-    margin: 2em 3%;
-    padding: 1.2em;
+@media screen and (max-width: 950px) {
+  .note-form { margin-left: 10%; margin-right: 10%; }
+}
+
+@media screen and (max-width: 450px) {
+  .note-form { margin-left: 5%; margin-right: 5%; }
+}
+
+/* Show page */
+
+.note-container {
+  margin-bottom: 2em;
+  .title {
+    padding: 0.5em 15%;
+    background-color: $blue;
+    color: $white;
+    font-size: 1.3em;
+    box-shadow: 0 2px 3px transparentize($midlight, 0.5);
+  }
+  .content {
+    margin: 1em 15%;
+    min-height: 15em;
+    padding: 0.5em;
+    word-wrap: break-word;
+    @include border-radius(10px);
+    background-color: $white;
+    box-shadow: 0 0 25px transparentize($light, 0.2);
+  }
+  .actions {
+    @extend .clearfix;
+    margin: 1em 15%;
+    padding-top: 1em;
+    .button { @include button($red); }
+    .button-delete { @include button($midlight); }
+    .left { float: left; }
+    .right { float: right; }
+  }
+}
+
+/* Responsiveness */
+
+@media screen and (max-width: 950px) {
+  .note-container {
+    .title { padding-left: 10%; padding-right: 10%; }
+    .content, .actions { margin-left: 10%; margin-right: 10%; }
   }
 }

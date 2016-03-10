@@ -1,5 +1,23 @@
 <%= provide :title, @note.title %>
 
-<div class="note-content">
-  <%= @note.content %>
-</div>
+<article class="note-container">
+  <header class="title">
+    <%= @note.title %>
+  </header>
+  <main class="content">
+    <%= @note.content %>
+  </main>
+  <nav class="actions">
+    <div class="left">
+      <%= link_to "Edit", edit_note_path(@user, @note), class: "button" %>
+    </div>
+    <div class="right">
+      <!--<%= link_to "Share", "#", class: "button" %>-->
+      <%= link_to "Delete", note_path(@user, @note), class: "button-delete",
+                            method: :delete, data: {
+                              confirm: "Do you want to delete '#{@note.title}'?",
+                              :'confirm-button-text' => 'Yes',
+                              :'cancel-button-text' => 'No' } %>
+    </div>
+  </nav>
+</article>

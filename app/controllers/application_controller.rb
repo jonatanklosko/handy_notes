@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
     def signed_in_user
       redirect_to signin_url unless signed_in?
     end
+    
+    # Requires the current user to be the same one
+    # for which the action is performed.
+    def correct_user
+      redirect_to root_url if params[:username] != current_user.username
+    end
 end

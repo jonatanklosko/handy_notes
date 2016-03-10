@@ -13,6 +13,11 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.10'
 gem 'font-awesome-sass', '~> 4.5'
 gem 'autosize-rails', '~> 1.18', '>= 1.18.17'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sweetalert'
+end
+gem 'sweet-alert-confirm', '~> 0.4.1'
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
@@ -21,6 +26,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
   gem 'email_spec', '~> 2.0'
   gem 'show_me_the_cookies', '~> 3.1'
+  gem 'poltergeist', '~> 1.9'
 end
 
 group :development do

@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @documents = @user.notes.order(updated_at: :desc) # temporary
+       # TODO: add method to users returning all kind of documents in correct order
   end
   
   def edit
@@ -56,11 +58,5 @@ class UsersController < ApplicationController
     def find_user
       @user = User.find_by(username: params[:username])
       redirect_to root_url unless @user
-    end
-    
-    # Requires the current user to be the same one
-    # for which the action is performed.
-    def correct_user
-      redirect_to root_url if params[:username] != current_user.username
     end
 end

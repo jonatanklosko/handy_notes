@@ -1,10 +1,9 @@
+/* Sweet alert */
+
+@import 'sweetalert';
+
+/* Noralize */
 @import 'normalize';
-@import 'global';
-@import 'layout';
-@import 'home';
-@import 'users';
-@import 'dashboard';
-@import 'notes';
 
 /* Font Awesome */
 @import 'font-awesome-sprockets';
@@ -12,3 +11,10 @@
 
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+@import 'global';
+@import 'layout';
+@import 'home';
+@import 'users';
+@import 'dashboard';
+@import 'notes';

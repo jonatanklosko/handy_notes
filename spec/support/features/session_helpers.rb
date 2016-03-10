@@ -21,7 +21,7 @@ module Features
     end
     
     def sign_out
-      visit root_url
+      visit root_path
       within("header") { click_link(nil, href: signout_path) }
     end
     

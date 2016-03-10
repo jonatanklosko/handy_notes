@@ -157,7 +157,7 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user) }
     
     context "when not signed in" do
-      it "redirects to sign in path" do
+      it "redirects to sign in url" do
         get :show, username: user.username
         expect(response).to redirect_to signin_url
       end
@@ -176,7 +176,7 @@ RSpec.describe UsersController, type: :controller do
     context "as a correct user" do
       before do
         sign_in user
-        patch :show, username: user.username
+        get :show, username: user.username
       end
       
       it { is_expected.to render_template :show }

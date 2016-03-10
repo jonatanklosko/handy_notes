@@ -120,6 +120,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     box-shadow: 0 0 8px $white;
   }
 }
+
+textarea {
+  word-wrap: break-word;
+  resize: vertical;
+}
     
 input[type="checkbox"] {
   display: none;

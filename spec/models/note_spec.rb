@@ -55,6 +55,15 @@ RSpec.describe Note, type: :model do
       end
     end
     
+    context "when the title is not updated" do
+      it "should not change" do
+        note = create(:note, title: "title")
+        expect(note.slug).to eq "title"
+        note.update_attribute :content, "Slug should not change"
+        expect(note.slug).to eq "title"
+      end
+    end
+    
     it "should not be equal to 'new'" do
       expect(create(:note, title: "new").slug).to_not eq "new"
     end

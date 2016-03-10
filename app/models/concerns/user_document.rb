@@ -6,7 +6,8 @@ module UserDocument
     belongs_to :user
     
     # Before actions
-    before_save :assign_title_when_empty ,:assign_slug
+    before_save :assign_title_when_empty
+    before_save :assign_slug, if: :title_changed?
     
     # Validations
     validates :title, length: { maximum: 80 }

@@ -1,27 +1,105 @@
-#toolkit {
-  position: fixed;
-  height: 100%;
-  min-width: 15%;
-  background-color: $almost-white;
-  box-shadow: 1.5px 0 4px transparentize($midlight, 0.85);
-  color: $dark;
-  i {
-    color: $green;
-    margin-right: 0.5em;
-  }
-  font-size: 1.2em;
-  .options {
-    .option {
-      display: block;
-      padding: 0.5em;
-      text-decoration: none;
-      color: $middark;
-      @include transition(background-color 0.3s ease-in-out,
-                          color 0.3s ease-in-out);
-      &:hover {
-        background-color: $middark;
-        color: $almost-white;
+#dashboard {
+  @extend .clearfix;
+  min-height: calc(100vh - 7rem); /* header + footer = 7rem */
+  overflow: hidden; /* Toolkit height trick - line 1. */
+  
+  /* Options */
+  
+  #toolkit {
+    margin-bottom: -99999px; /* Toolkit height trick - line 2. */
+    padding-bottom: 99999px; /* Toolkit height trick - line 3. */
+    
+    float: left;
+    height: 100%;
+    width: 10rem;
+    background-color: $almost-white;
+    box-shadow: 0 0 25px transparentize($light, 0.2);
+    color: $dark;
+    font-size: 1.2em;
+    i {
+      color: $green;
+      margin-right: 0.5em;
+    }
+    .options {
+      .option {
+        display: block;
+        padding: 0.5em;
+        text-decoration: none;
+        color: $middark;
+        @include transition(background-color 0.3s ease-in-out,
+                            color 0.3s ease-in-out);
+        &:hover {
+          background-color: $middark;
+          color: $almost-white;
+        }
       }
     }
   }
+  
+  /* Documents */
+  
+  #documents-container {
+    float: left;
+    height: 100%;
+    width: calc(90% - 10rem);
+    padding: 1em;
+    @extend .clearfix;
+    .document {
+      @extend .clearfix;
+      display: block;
+      float: left;
+      width: 100%;
+      background-color: $blue;
+      @include border-radius(10px);
+      margin-bottom: 0.5em;
+      padding: 0.5em 2em 0.5em 1em;
+      box-shadow: 0 0 10px transparentize($dark, 0.5);
+      cursor: pointer;
+      font-size: 1.2em;
+      @include transition(background-color 0.2s ease-in-out);
+      &:hover {
+        background-color: lighten($blue, 5%);
+      }
+      .title {
+        float: left;
+        width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: $almost-white;
+      }
+      .actions {
+        float: right;
+        i {
+          margin-left: 1em;
+          &:hover {
+            color: $green;
+          }
+        }
+      }
+      a {
+        color: $almost-white;
+        text-decoration: none;
+      }
+    }
+    .note .title:before {
+      margin-right: 1em;
+      font-family: FontAwesome;
+      color: $light;
+      content: "\f249";
+    }
+  }
+}
+
+
+/* Responsiveness */
+@media screen and (max-width: 700px) {
+  #dashboard {
+    #toolkit, #documents-container { width: 100%; }
+    #toolkit .options .option { text-align: center; }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #dashboard #documents-container .document .title { width: 65%; }
 }

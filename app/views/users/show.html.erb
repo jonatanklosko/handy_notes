@@ -1,12 +1,38 @@
 <%= provide :title, "Dashboard" %>
 
-<aside id="toolkit">
-  <div class="options">
-    <%= link_to new_note_path, class: "option" do %>
-      <div><%= icon('sticky-note') %>Note</div>
+<div id="dashboard">
+  <aside id="toolkit">
+    <div class="options">
+      <%= link_to new_note_path, class: "option" do %>
+        <div><%= icon('sticky-note') %>Note</div>
+      <% end %>
+      <%= link_to "#", class: "option" do %>
+        <div><%= icon('list') %>Checklist</div>
+      <% end %>
+    </div>
+  </aside>
+  <section id="documents-container">
+    <% @documents.each do |document| %>
+      <% document_type = document.class.name.underscore %>
+      <%= content_tag :div, class: "document #{document_type}",
+                            id: "document-#{document.id}" do %>
+        <header class="title">
+          <%= link_to polymorphic_path(document, username: @user.username),
+                      title: document.title do %>
+              <%= document.title %>
+          <% end %>
+        </header>
+        <nav class="actions">
+          <%= link_to icon('pencil'),
+                edit_polymorphic_path(document, username: @user.username) %>
+          <%= link_to icon('trash'),
+                polymorphic_path(document, username: @user.username),
+                method: :delete, data: {
+                  confirm: "Do you want to delete '#{document.title}'?",
+                  :'confirm-button-text' => 'Yes',
+                  :'cancel-button-text' => 'No' } %>
+        </nav>
+      <% end %>
     <% end %>
-    <%= link_to "#", class: "option" do %>
-      <div><%= icon('list') %>Checklist</div>
-    <% end %>
-  </div>
-</aside>
+  </section>
+</div>
