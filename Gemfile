@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1', '>= 3.1.10'
 gem 'font-awesome-sass', '~> 4.5'
 gem 'autosize-rails', '~> 1.18', '>= 1.18.17'
+gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'

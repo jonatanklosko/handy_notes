@@ -1,12 +1,12 @@
 <%= provide :title, @note.title %>
 
-<article class="note-container">
+<div class="note-container">
   <header class="title">
     <%= @note.title %>
   </header>
-  <main class="content">
-    <%= @note.content %>
-  </main>
+  <article class="content">
+    <%= markdown @note.content %>
+  </article>
   <nav class="actions">
     <div class="left">
       <%= link_to "Edit", edit_note_path(@user, @note), class: "button" %>
@@ -20,4 +20,4 @@
                               :'cancel-button-text' => 'No' } %>
     </div>
   </nav>
-</article>
+</div>
