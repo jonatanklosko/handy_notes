@@ -1,2 +1,2 @@
-$(document).on 'page:change', ->
+onEveryPage ->
   $('textarea').autosize()

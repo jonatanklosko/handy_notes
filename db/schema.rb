@@ -11,11 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306130323) do
+ActiveRecord::Schema.define(version: 20160312151907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
+
+  create_table "checklist_items", force: :cascade do |t|
+    t.integer  "checklist_id"
+    t.string   "description"
+    t.boolean  "checked",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "checklist_items", ["checklist_id"], name: "index_checklist_items_on_checklist_id", using: :btree
+
+  create_table "checklists", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "checklists", ["slug", "user_id"], name: "index_checklists_on_slug_and_user_id", unique: true, using: :btree
+  add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"
@@ -45,5 +66,7 @@ ActiveRecord::Schema.define(version: 20160306130323) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "checklist_items", "checklists"
+  add_foreign_key "checklists", "users"
   add_foreign_key "notes", "users"
 end

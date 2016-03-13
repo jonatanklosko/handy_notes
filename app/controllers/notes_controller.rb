@@ -33,8 +33,10 @@ class NotesController < ApplicationController
   end
   
   def destroy
-    @note.destroy if @note
-    flash[:success] = "'#{@note.title}' has been deleted."
+    if @note
+      @note.destroy
+      flash[:success] = "'#{@note.title}' has been deleted."
+    end
     redirect_to root_url
   end
   
@@ -45,11 +47,6 @@ class NotesController < ApplicationController
     end
     
     # Before actions
-    
-    # Finds the user by username in params and assigns it to @user.
-    def assign_user
-      @user = User.find_by(username: params[:username])
-    end
     
     # Finds the note by slug in params and assigns it to @note.
     def assign_note

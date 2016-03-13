@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
     def correct_user
       redirect_to root_url if params[:username] != current_user.username
     end
+    
+    # Finds the user by username in params and assigns it to @user.
+    def assign_user
+      @user = User.find_by(username: params[:username])
+    end
 end

@@ -82,12 +82,15 @@
         text-decoration: none;
       }
     }
-    .note .title:before {
-      margin-right: 1em;
-      font-family: FontAwesome;
-      color: $light;
-      content: "\f249";
+    .note, .checklist {
+      .title:before {
+        margin-right: 1em;
+        font-family: FontAwesome;
+        color: $light;
+      }
     }
+    .note .title:before { content: "\f249"; }
+    .checklist .title:before { content: "\f03a"; }
   }
 }
 
@@ -100,6 +103,22 @@
   }
 }
 
-@media screen and (max-width: 450px) {
-  #dashboard #documents-container .document .title { width: 65%; }
+@media screen and (max-width: 550px) {
+  #dashboard #documents-container .document {
+    position: relative;
+    padding: 0.5em 0.75em;
+    .title {
+      width: 100%;
+      text-align: center;
+      overflow: visible;
+      white-space: normal;
+      &:before {
+        display: block; 
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5em;
+      }
+    }
+    .actions { position: absolute; right: 0.5em; top: 0.2em; }
+  }
 }

@@ -97,12 +97,31 @@ RSpec.describe User, type: :model do
     end
   end
   
-  describe "##send_password_reset_email" do
+  describe "#send_password_reset_email" do
     it "sends the email" do
       user = create(:user)
       expect {
         user.send_password_reset_email
       }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
+  
+  describe "#documents" do
+    let(:user) { create(:user) }
+    
+    it "returns an Array containing all the documents of all types"\
+      " that belongs to the user" do
+      note = create(:note, user: user)
+      checklist = create(:checklist, user: user)
+      expect(user.documents).to contain_exactly(note, checklist)
+    end
+    
+    it "documents are ordered descending by a date of an update" do
+      three_days_ago = create(:note, user: user, updated_at: 3.days.ago)
+      five_days_ago = create(:checklist, user: user, updated_at: 5.days.ago)
+      one_week_ago = create(:note, user: user, updated_at: 1.week.ago)
+      now = create(:checklist, user: user, updated_at: Time.now)
+      expect(user.documents).to eq [now, three_days_ago, five_days_ago, one_week_ago]
     end
   end
 end

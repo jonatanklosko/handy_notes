@@ -205,7 +205,7 @@ RSpec.describe NotesController, type: :controller do
       
       it "does not modify the note" do
         note.reload
-        expect(note).to_not eq("New content")
+        expect(note.content).to_not eq("New content")
       end
     end
     
@@ -221,11 +221,6 @@ RSpec.describe NotesController, type: :controller do
       it "flash[:error] contains a message" do
         expect(flash[:error]).to_not be_empty
       end
-      
-      it "does not modify the note" do
-        note.reload
-        expect(note).to_not eq("New content")
-      end
     end
     
     context "as a correct user with valid informations" do
@@ -233,12 +228,12 @@ RSpec.describe NotesController, type: :controller do
         sign_in user
         patch :update, username: user.username, slug: note.slug,
                                  note: { content: "New content" }
+        note.reload
       end
         
-      it { is_expected.to redirect_to note_path(user, note) }
+      it { is_expected.to redirect_to note_url(user, note) }
       
       it "modifies the note" do
-        note.reload
         expect(note.content).to eq("New content")
       end
     end

@@ -1,0 +1,32 @@
+<%= provide :title, @checklist.title %>
+
+<div class="checklist-container">
+  <header class="title">
+    <%= @checklist.title %>
+  </header>
+  <article class="content">
+    <% @checklist.items.each do |item| %>
+      <div class="item">
+        <%= check_box_tag "item_#{item.id}", item.checked? ? '1' : '0',
+            item.checked?,
+            data: { remote: true,
+                    url: toggle_checklist_item_url(@user, @checklist, item),
+                    method: "PATCH" } %>
+        <%= label_tag "item_#{item.id}", item.description %>
+      </div>
+    <% end %>
+  </article>
+  <nav class="actions">
+    <div class="left">
+      <%= link_to "Edit", edit_checklist_path(@user, @checklist), class: "button" %>
+    </div>
+    <div class="right">
+      <!--<%= link_to "Share", "#", class: "button" %>-->
+      <%= link_to "Delete", checklist_path(@user, @checklist), class: "button-delete",
+                            method: :delete, data: {
+                              confirm: "Do you want to delete '#{@checklist.title}'?",
+                              :'confirm-button-text' => 'Yes',
+                              :'cancel-button-text' => 'No' } %>
+    </div>
+  </nav>
+</div>

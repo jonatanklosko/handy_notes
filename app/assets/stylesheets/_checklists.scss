@@ -1,0 +1,27 @@
+/* Create/Edit page */
+
+.checklist-form {
+  @extend .document-form;
+  input[type="text"] {
+    box-shadow: 0 0 25px transparentize($light, 0.2);
+    &:first {
+      
+    }
+  }
+  .items {
+    margin: 3em 0;
+  }
+}
+
+/* Show page */
+.checklist-container {
+  @extend .document-container;
+  
+  font-size: 1.2em;
+  input[type="checkbox"]:checked + label {
+    color: $green;
+  }
+  .item {
+    margin: 0.5em 0;
+  }
+}

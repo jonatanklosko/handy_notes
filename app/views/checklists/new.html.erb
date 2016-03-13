@@ -1,0 +1,22 @@
+<% provide :title, "New checklist" %>
+
+<div class="checklist-form">
+  <%= form_for @checklist do |f| %>
+    
+    <%= f.text_field :title, placeholder: "Title" %>
+  
+    <section class="items">
+      <!-- Display entered items when action is re-rendered
+      because of invalid title -->
+      <% @new_items.each do |index, description| %>
+        <%= text_field_tag "new_items[#{index}]", description,
+                                        placeholder: "Item" %>
+      <% end %>
+      
+      <%= text_field_tag "new_items[#{@new_items.keys.last.to_i.next}]",
+                          '', placeholder: "Item" %>
+    </section>
+    
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

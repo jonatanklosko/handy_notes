@@ -1,4 +1,4 @@
-$(document).on 'page:change', ->
+onPage 'users update', ->
   if $('.error-messages-box').prev().length
     sectionTop = $('.error-messages-box').prev().offset().top
     $(window).scrollTop(sectionTop)

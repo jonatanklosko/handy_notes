@@ -36,7 +36,7 @@ module UserDocument
       self.slug = self.title.parameterize
       
       # Slug is empty when the title contains only non-word characters
-      self.slug = "note" if self.slug.empty?
+      self.slug = "document" if self.slug.empty?
       
       user = User.find_by(id: self.user_id)
       documents = user.send(self.class.name.underscore.pluralize)

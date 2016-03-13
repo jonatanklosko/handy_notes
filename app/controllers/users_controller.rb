@@ -19,8 +19,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @documents = @user.notes.order(updated_at: :desc) # temporary
-       # TODO: add method to users returning all kind of documents in correct order
+    @documents = @user.documents
   end
   
   def edit

@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   
   scope ':username' do
     resources :notes, param: :slug, except: [:index]
+    resources :checklists, param: :slug, except: [:index]
+    patch 'checklists/:slug/toggle_item/:item_id' =>
+           'checklists#toggle_item', as: :toggle_checklist_item
   end
 end

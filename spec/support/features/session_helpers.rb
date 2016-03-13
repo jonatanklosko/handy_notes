@@ -22,7 +22,7 @@ module Features
     
     def sign_out
       visit root_path
-      within("header") { click_link(nil, href: signout_path) }
+      within("#main-header") { click_link(nil, href: signout_path) }
     end
     
     def expect_user_to_be_signed_in

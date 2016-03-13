@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # Associations
   
   has_many :notes, dependent: :destroy
+  has_many :checklists, dependent: :destroy
   
   # Validations
   
@@ -84,6 +85,12 @@ class User < ActiveRecord::Base
   # Overridden in order to use username in urls instead of id.
   def to_param
     self.username
+  end
+  
+  # Returns an Array containing documents of all kind
+  # that belongs to the user.
+  def documents
+    (self.notes + self.checklists).sort_by { |d| -d.updated_at.to_i }
   end
   
   private
