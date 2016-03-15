@@ -49,8 +49,7 @@ feature "User manages checklists" do
   end
   
   scenario "User deletes a checklist", js: true do
-    create_checklist title: "Example checklist",
-                     items: ["Foo", "Bar", "Baz"]
+    create_checklist title: "Example checklist"
     visit root_path
     click_on "Example checklist"
     click_on "Delete"
@@ -59,6 +58,18 @@ feature "User manages checklists" do
     click_on "Yes"
     
     visit root_path
+    expect(page).to_not have_content "Example checklist"
+  end
+  
+  scenario "User deletes a checklist from his dashboard using ajax", js: true do
+    create_checklist title: "Example checklist"
+    visit root_path
+    find('a[data-text*="Example checklist"][data-method="delete"]')
+                                                  .trigger("click")
+    # Confirm (wait for message box to appear)
+    sleep 0.5
+    click_on "Yes"
+    
     expect(page).to_not have_content "Example checklist"
   end
   

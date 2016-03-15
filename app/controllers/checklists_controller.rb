@@ -65,11 +65,12 @@ class ChecklistsController < ApplicationController
   end
   
   def destroy
-    if @checklist
-      @checklist.destroy
-      flash[:success] = "'#{@checklist.title}' has been deleted."
+    @checklist.destroy if @checklist
+    
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js { render nothing: true }
     end
-    redirect_to root_url
   end
   
   def toggle_item

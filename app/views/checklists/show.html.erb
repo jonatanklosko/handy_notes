@@ -24,7 +24,8 @@
       <!--<%= link_to "Share", "#", class: "button" %>-->
       <%= link_to "Delete", checklist_path(@user, @checklist), class: "button-delete",
                             method: :delete, data: {
-                              confirm: "Do you want to delete '#{@checklist.title}'?",
+                              confirm: "Are you sure?",
+                              text: "'#{@checklist.title}' will be deleted.",
                               :'confirm-button-text' => 'Yes',
                               :'cancel-button-text' => 'No' } %>
     </div>

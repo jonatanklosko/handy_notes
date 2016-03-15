@@ -44,6 +44,17 @@ feature "User manages notes" do
     expect(page).to_not have_content "Example note"
   end
   
+  scenario "User deletes a note from his dashboard using ajax", js: true do
+    create_note title: "Example note"
+    visit root_path
+    find('a[data-text*="Example note"][data-method="delete"]').trigger("click")
+    # Confirm (wait for message box to appear)
+    sleep 0.5
+    click_on "Yes"
+    
+    expect(page).to_not have_content "Example note"
+  end
+  
   private
   
     def create_note(title: "Example note", content: "Example content.")

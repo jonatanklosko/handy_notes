@@ -33,11 +33,12 @@ class NotesController < ApplicationController
   end
   
   def destroy
-    if @note
-      @note.destroy
-      flash[:success] = "'#{@note.title}' has been deleted."
+    @note.destroy if @note
+    
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js { render nothing: true }
     end
-    redirect_to root_url
   end
   
   private
