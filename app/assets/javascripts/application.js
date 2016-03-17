@@ -4,6 +4,7 @@
 //= require jquery.autosize
 //= require sweetalert
 //= require sweet-alert-confirm
+//= require clipboard
 //= require_self
 //= require_tree .
 

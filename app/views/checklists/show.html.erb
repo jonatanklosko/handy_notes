@@ -16,18 +16,6 @@
       </div>
     <% end %>
   </article>
-  <nav class="actions">
-    <div class="left">
-      <%= link_to "Edit", edit_checklist_path(@user, @checklist), class: "button" %>
-    </div>
-    <div class="right">
-      <!--<%= link_to "Share", "#", class: "button" %>-->
-      <%= link_to "Delete", checklist_path(@user, @checklist), class: "button-delete",
-                            method: :delete, data: {
-                              confirm: "Are you sure?",
-                              text: "'#{@checklist.title}' will be deleted.",
-                              :'confirm-button-text' => 'Yes',
-                              :'cancel-button-text' => 'No' } %>
-    </div>
-  </nav>
+  
+  <%= render 'user_documents/show_actions.html.erb', document: @checklist %>
 </div>

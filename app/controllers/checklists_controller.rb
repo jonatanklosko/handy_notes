@@ -1,5 +1,7 @@
 class ChecklistsController < ApplicationController
-  before_action :signed_in_user, :correct_user, :assign_user
+  before_action :signed_in_user, :correct_user, except: [:show]
+  before_action :correct_user_or_shared_page, only: [:show]
+  before_action :assign_user
   before_action :assign_checklist, only: [:show, :edit, :update,
                                           :destroy, :toggle_item]
   

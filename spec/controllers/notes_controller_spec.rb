@@ -131,6 +131,16 @@ RSpec.describe NotesController, type: :controller do
       
       it { is_expected.to render_template 'show' }
     end
+    
+    context "when session[note.url] is set to 'shared'" do
+      before do
+        @request.host = Rails.application.routes.default_url_options[:host]
+        session[note.path] = "shared"
+        get :show, username: user.username, slug: note.slug
+      end
+      
+      it { is_expected.to render_template 'show' }
+    end
   end
   
   describe "GET #edit" do

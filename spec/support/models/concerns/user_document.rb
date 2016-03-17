@@ -65,4 +65,21 @@ shared_examples_for "UserDocument" do
       expect(create(document_type, title: "new").slug).to_not eq "new"
     end
   end
+  
+  it "should create a new Share on creation" do
+    expect {
+      create(document_type)
+    }.to change{ Share.count }.by(1)
+  end
+  
+  describe "#share_url" do
+    context "when the title is updated" do
+      let(:document) { create(document_type, title: "Title") }
+      it "returned velue should not change" do
+        previous_share_url = document.share_url
+        document.update_attribute :title, "Newtitle"
+        expect(document.share_url).to eq(previous_share_url)
+      end
+    end
+  end
 end

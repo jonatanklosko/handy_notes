@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     patch 'checklists/:slug/toggle_item/:item_id' =>
            'checklists#toggle_item', as: :toggle_checklist_item
   end
+  
+  resources :shares, only: [:show], param: :share_token
 end

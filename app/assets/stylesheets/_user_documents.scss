@@ -40,7 +40,8 @@
     @extend .clearfix;
     margin: 1em 15%;
     padding-top: 1em;
-    .button { @include button($red); }
+    .button-edit { @include button($red); }
+    .button-share { @include button($light-blue) };
     .button-delete { @include button($midlight); }
     .left { float: left; }
     .right { float: right; }

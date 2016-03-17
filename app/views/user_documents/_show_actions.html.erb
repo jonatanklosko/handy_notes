@@ -1,0 +1,21 @@
+<% if signed_in? && @user == current_user %>
+  <nav class="actions">
+    <div class="left">
+      <%= link_to "Edit", edit_polymorphic_path(document, username: @user.username),
+                          class: "button-edit" %>
+    </div>
+    <div class="right">
+      <%= link_to "Share", "#",
+                           data: { :'share-url' => document.share_url },
+                               class: "button-share" %>
+      <%= link_to "Delete", polymorphic_path(document, username: @user.username),
+                            class: "button-delete",
+                            method: :delete, data: {
+                              confirm: "Are you sure?",
+                              text: "'#{document.title}' will be deleted.",
+                              :'confirm-button-text' => 'Yes',
+                              :'cancel-button-text' => 'No',
+                              :'confirm-button-color' => '#FF4D63' } %>
+    </div>
+  </nav>
+<% end %>

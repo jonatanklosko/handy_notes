@@ -1,6 +1,7 @@
-<% unless flash.empty? %>
+<% alerts = flash.to_h.slice('success', 'error', 'warning', 'info') %>
+<% unless alerts.empty? %>
   <div id="alerts">
-    <% flash.each do |message_type, message| %>
+    <% alerts.each do |message_type, message| %>
       <%= content_tag :div, class: "alert alert-#{message_type}" do %>
         <%= content_tag :div, message %>
         <%= icon('times-circle', class: "hide-alert") %>

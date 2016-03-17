@@ -54,15 +54,4 @@ feature "User manages notes" do
     
     expect(page).to_not have_content "Example note"
   end
-  
-  private
-  
-    def create_note(title: "Example note", content: "Example content.")
-      visit root_path
-      within("#toolkit") { click_on "Note" }
-      
-      fill_in "note_title", with: title
-      fill_in "note_content", with: content
-      click_on "Create"
-    end
 end

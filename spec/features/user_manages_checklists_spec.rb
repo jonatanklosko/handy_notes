@@ -74,16 +74,6 @@ feature "User manages checklists" do
   end
   
   private
-  
-    def create_checklist(title: "Example checklist",
-                         items: ["First", "Second", "Third"])
-      visit root_path
-      within("#toolkit") { click_on "Checklist" }
-      
-      fill_in "checklist_title", with: title
-      enter_new_items(*items)
-      click_on "Create"
-    end
     
     def enter_new_items(*items)
       items.each do |item|

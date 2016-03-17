@@ -25,13 +25,16 @@
         <nav class="actions">
           <%= link_to icon('pencil'),
                 edit_polymorphic_path(document, username: @user.username) %>
+          <%= link_to icon('share-alt'), "#",
+                      data: { :'share-url' => document.share_url } %>
           <%= link_to icon('trash'),
                 polymorphic_path(document, username: @user.username),
                 method: :delete, remote: true, data: {
                   confirm: "Are you sure?",
                   text: "'#{document.title}' will be deleted.",
                   :'confirm-button-text' => 'Yes',
-                  :'cancel-button-text' => 'No' } %>
+                  :'cancel-button-text' => 'No',
+                  :'confirm-button-color' => '#FF4D63' } %>
         </nav>
       <% end %>
     <% end %>

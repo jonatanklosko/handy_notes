@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   # Mailer setup
-  config.action_mailer.default_url_options = { :host => 'workstation-jonatanklosko.c9.io' }
+  config.action_mailer.default_url_options = { :host => 'workstation-jonatanklosko.c9users.io' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -45,10 +45,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "workstation-jonatanklosko.c9.io",
+    domain: "workstation-jonatanklosko.c9users.io",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
+  
+  # Base url
+  default_url_options[:host] = 'workstation-jonatanklosko.c9users.io'
 end

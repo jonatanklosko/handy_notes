@@ -144,6 +144,16 @@ RSpec.describe ChecklistsController, type: :controller do
       
       it { is_expected.to render_template 'show' }
     end
+    
+    context "when session[checklist.url] is set to 'shared'" do
+      before do
+        @request.host = Rails.application.routes.default_url_options[:host]
+        @request.session[checklist.path] = "shared"
+        get :show, { username: user.username, slug: checklist.slug }
+      end
+
+      it { is_expected.to render_template 'show' }
+    end
   end
   
   describe "GET #edit" do
