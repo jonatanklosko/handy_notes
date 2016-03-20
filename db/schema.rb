@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318200841) do
+ActiveRecord::Schema.define(version: 20160320223056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,28 @@ ActiveRecord::Schema.define(version: 20160318200841) do
 
   add_index "checklists", ["slug", "user_id"], name: "index_checklists_on_slug_and_user_id", unique: true, using: :btree
   add_index "checklists", ["user_id"], name: "index_checklists_on_user_id", using: :btree
+
+  create_table "linkset_links", force: :cascade do |t|
+    t.integer  "linkset_id"
+    t.string   "name"
+    t.string   "url"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "linkset_links", ["linkset_id"], name: "index_linkset_links_on_linkset_id", using: :btree
+
+  create_table "linksets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "linksets", ["slug", "user_id"], name: "index_linksets_on_slug_and_user_id", unique: true, using: :btree
+  add_index "linksets", ["user_id"], name: "index_linksets_on_user_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"
@@ -78,5 +100,7 @@ ActiveRecord::Schema.define(version: 20160318200841) do
 
   add_foreign_key "checklist_items", "checklists"
   add_foreign_key "checklists", "users"
+  add_foreign_key "linkset_links", "linksets"
+  add_foreign_key "linksets", "users"
   add_foreign_key "notes", "users"
 end

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   
   has_many :notes, dependent: :destroy
   has_many :checklists, dependent: :destroy
+  has_many :linksets, dependent: :destroy
   
   # Validations
   
@@ -90,7 +91,9 @@ class User < ActiveRecord::Base
   # Returns an Array containing documents of all kind
   # that belongs to the user.
   def documents
-    (self.notes + self.checklists).sort_by { |d| -d.updated_at.to_i }
+    @documents ||= (self.notes + self.checklists + self.linksets).sort_by do |d|
+      -d.updated_at.to_i
+    end
   end
   
   private

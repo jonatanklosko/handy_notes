@@ -1,0 +1,2 @@
+class LinksetsController < ApplicationController
+end
