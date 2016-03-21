@@ -1,0 +1,10 @@
+<% provide :title, @linkset.title %>
+
+<div class="linkset-form">
+  <%= form_for @linkset, url: linkset_path(@user, @linkset) do |f| %>
+  
+    <%= f.text_field :title, placeholder: "Title" %>
+    
+    <%= f.submit "Update" %>
+  <% end %>
+</div>

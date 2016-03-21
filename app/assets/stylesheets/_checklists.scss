@@ -2,12 +2,6 @@
 
 .checklist-form {
   @extend .document-form;
-  input[type="text"] {
-    box-shadow: 0 0 25px transparentize($light, 0.2);
-    &:first {
-      
-    }
-  }
   .items {
     margin: 3em 0;
   }

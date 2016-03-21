@@ -82,7 +82,7 @@
         text-decoration: none;
       }
     }
-    .note, .checklist {
+    .note, .checklist, .linkset {
       .title:before {
         margin-right: 1em;
         font-family: FontAwesome;
@@ -91,6 +91,7 @@
     }
     .note .title:before { content: "\f249"; }
     .checklist .title:before { content: "\f03a"; }
+    .linkset .title:before { content: "\f004"; }
   }
 }
 

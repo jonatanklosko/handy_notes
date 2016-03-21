@@ -1,4 +1,4 @@
-onPage 'users show, notes show, checklists show', ->
+onPage 'users show, notes show, checklists show, linksets show', ->
   # Display sweet alert with share url
   $('.actions a[data-share-url]').on 'click', ->
     swal

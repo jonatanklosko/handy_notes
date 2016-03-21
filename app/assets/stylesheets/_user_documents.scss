@@ -3,6 +3,9 @@
 .document-form {
   text-align: center;
   margin: 0.5em 15% 2em 15%;
+  textarea, input[type="text"] {
+    box-shadow: 0 0 25px transparentize($light, 0.2);
+  }
   input[type="submit"] {
     @include button($red);
     width: auto;

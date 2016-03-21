@@ -2,9 +2,6 @@
 
 .note-form {
   @extend .document-form;
-  textarea, input[type="text"] {
-    box-shadow: 0 0 25px transparentize($light, 0.2);
-  }
 }
 
 /* Show page */

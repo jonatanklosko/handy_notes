@@ -1,0 +1,10 @@
+/* Create/Edit page */
+
+.linkset-form {
+  @extend .document-form;
+}
+
+/* Show page */
+.linkset-container {
+  @extend .document-container;
+}

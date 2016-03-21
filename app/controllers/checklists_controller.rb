@@ -1,9 +1,5 @@
 class ChecklistsController < ApplicationController
-  before_action :signed_in_user, :correct_user, except: [:show]
-  before_action :correct_user_or_shared_page, only: [:show]
-  before_action :assign_user
-  before_action :assign_checklist, only: [:show, :edit, :update,
-                                          :destroy, :toggle_item]
+  include UserDocumentsController
   
   def new
     @checklist = @user.checklists.build
@@ -26,9 +22,6 @@ class ChecklistsController < ApplicationController
       flash.now[:error] = @checklist.errors.full_messages.first
       render 'new'
     end
-  end
-  
-  def show
   end
   
   def edit
@@ -66,15 +59,6 @@ class ChecklistsController < ApplicationController
     end
   end
   
-  def destroy
-    @checklist.destroy if @checklist
-    
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.js { render nothing: true }
-    end
-  end
-  
   def toggle_item
     item = @checklist.items.find_by id: params[:item_id]
     item.toggle! :checked
@@ -86,10 +70,5 @@ class ChecklistsController < ApplicationController
   
     def checklist_params
       params.require(:checklist).permit(:title)
-    end
-    
-        # Finds the checklist by slug in params and assigns it to @note.
-    def assign_checklist
-      @checklist = @user.checklists.find_by(slug: params[:slug])
     end
 end

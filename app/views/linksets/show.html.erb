@@ -1,0 +1,11 @@
+<%= provide :title, @linkset.title %>
+
+<div class="linkset-container">
+  <header class="title">
+    <%= @linkset.title %>
+  </header>
+  <article class="content">
+  </article>
+  
+  <%= render 'user_documents/show_actions.html.erb', document: @linkset %>
+</div>
