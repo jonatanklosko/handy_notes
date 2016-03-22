@@ -16,10 +16,15 @@ Rails.application.routes.draw do
   
   scope ':username' do
     resources :notes, param: :slug, except: [:index]
+    
     resources :checklists, param: :slug, except: [:index]
     patch 'checklists/:slug/toggle_item/:item_id' =>
            'checklists#toggle_item', as: :toggle_checklist_item
-    resources :linksets, param: :slug, except: [:index]
+           
+    resources :linksets, param: :slug, except: [:index] do
+      resources :links, controller: :linkset_links,
+                        only: [:new, :create, :edit, :update, :destroy]
+    end
   end
   
   resources :shares, only: [:show], param: :share_token

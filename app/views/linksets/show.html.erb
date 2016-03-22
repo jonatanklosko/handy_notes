@@ -5,7 +5,28 @@
     <%= @linkset.title %>
   </header>
   <article class="content">
+    <div class="links">
+      <%= render @linkset.links %>
+      <% if signed_in_as_owner? %>
+        <div class="add-link">
+          <div class="name">
+            <%= link_to icon('plus'), new_linkset_link_path(@user, @linkset),
+                          remote: true %>
+          </div>
+          <div class="description">Add a new link</div>
+        </div>
+      <% end %>
+    </div>
   </article>
-  
   <%= render 'user_documents/show_actions.html.erb', document: @linkset %>
+</div>
+
+<div class="modal-overlay">
+  <div class="modal-window">
+    <div class="form">
+    </div>
+    <div class="loading">
+      <i class="fa fa-spinner fa-spin fa-5x"></i>
+    </div>
+  </div>
 </div>

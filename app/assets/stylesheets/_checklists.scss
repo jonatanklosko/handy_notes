@@ -10,12 +10,13 @@
 /* Show page */
 .checklist-container {
   @extend .document-container;
-  
-  font-size: 1.2em;
-  input[type="checkbox"]:checked + label {
-    color: $green;
-  }
-  .item {
-    margin: 0.5em 0;
+  .content {
+    font-size: 1.2em;
+    input[type="checkbox"]:checked + label {
+      color: $green;
+    }
+    .item {
+      margin: 0.5em 0;
+    }
   }
 }

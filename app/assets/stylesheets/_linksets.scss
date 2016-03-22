@@ -7,4 +7,111 @@
 /* Show page */
 .linkset-container {
   @extend .document-container;
+  .links {
+    .link {
+      @extend .clearfix;
+      margin-bottom: 1em;
+      box-shadow: 0 0 25px $light;
+      @include border-radius(5px);
+      overflow: hidden;
+      &:hover {
+        .name { background-color: transparentize($green, 0.3); }
+        cursor: pointer;
+      }
+      .name, .description {
+        float: left;
+        padding: 0.7em 1em;
+      }
+      .name {
+        width: 20%;
+        @include transition(background-color 0.3s ease-in-out);
+        background-color: $green;
+        color: $white;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+      }
+      .description {
+        width: 80%;
+      }
+    }
+    .add-link {
+      @extend .link;
+      .name { text-align: center; }
+      opacity: 0.4;
+    }
+  }
+}
+
+/* Modal window with form */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  background-color: transparentize(black, 0.6);
+  z-index: 99999;
+  box-shadow: 0 0 5px transparentize(black, 0.2);
+  .modal-window {
+    @include vertical-align;
+    margin: 0 auto;
+    width: 40%;
+    padding: 1em;
+    background-color: $white;
+    @include border-radius(5px);
+    text-align: center;
+    input[type="text"] {
+      @include transition(border-color 0.15s);
+      border: 1px solid $light;
+      box-shadow: inset 0px 1px 1px transparentize($dark, 0.9);
+      &:focus {
+        box-shadow: 0 0 3px transparentize($light, 0.6);
+        border-color: transparentize($light-blue, 0.2);
+      }
+    }
+    input[type="submit"]{
+      @include button($light-blue);
+      width: auto;
+    }
+    .cancel {
+      @include button($light);
+      margin-top: 2em;
+      margin-right: 0.5em;
+    }
+      input { @include border-radius(3px); }
+  }
+  .loading {
+    display: none;
+  }
+}
+
+
+/* Responsiveness */
+
+@media screen and (max-width: 1100px) {
+  .modal-overlay .modal-window {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .modal-overlay .modal-window {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .modal-overlay .modal-window {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-overlay .modal-window {
+    width: 90%;
+  }
 }
