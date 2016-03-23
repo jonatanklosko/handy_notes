@@ -7,6 +7,7 @@ class LinksetLinksController < ApplicationController
     
     respond_to do |format|
       format.js { }
+      format.html { redirect_to linkset_path(@user, @linkset) }
     end
   end
   
@@ -16,17 +17,34 @@ class LinksetLinksController < ApplicationController
     if @link.save
       respond_to do |format|
         format.js { }
+        format.html { redirect_to @linkset.path }
       end
     end
   end
   
   def edit
+    respond_to do |format|
+      format.js { }
+      format.html { redirect_to @linkset.path }
+    end
   end
   
   def update
+    if @link.update_attributes(link_params)
+      respond_to do |format|
+        format.js { }
+        format.html { redirect_to @linkset.path }
+      end
+    end
   end
   
   def destroy
+    @link.destroy if @link
+    
+    respond_to do |format|
+      format.js { }
+      format.html { redirect_to @linkset.path }
+    end
   end
   
   private

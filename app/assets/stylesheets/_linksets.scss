@@ -5,6 +5,7 @@
 }
 
 /* Show page */
+
 .linkset-container {
   @extend .document-container;
   .links {
@@ -23,17 +24,36 @@
         padding: 0.7em 1em;
       }
       .name {
+        margin-bottom: -100em; /* Height trick - line 1. */
+        padding-bottom: 100.7em; /* Height trick - line 2. and 0.7em real padding */
         width: 20%;
         @include transition(background-color 0.3s ease-in-out);
         background-color: $green;
         color: $white;
+        word-wrap: break-word;
         a {
           color: $white;
           text-decoration: none;
         }
       }
       .description {
-        width: 80%;
+        max-width: 80%;
+      }
+      .actions {
+        float: right;
+        padding: 0.5em 1em 0.5em 0;
+        margin: 0;
+        font-size: 1.2em;
+        a {
+          outline: none;
+          i {
+            margin-left: 1em;
+            color: $light-blue;
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
       }
     }
     .add-link {
@@ -44,7 +64,47 @@
   }
 }
 
+/* Responsiveness */
+
+@media screen and (max-width: 1000px) {
+  .linkset-container .links .link {
+    .name { width: 25%; }
+    .description { max-width: 75%; }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .linkset-container .links {
+    .link {
+      position: relative;
+      .name {
+        margin-bottom: 0; /* Remove height trick - line 1. */
+        padding-bottom: 0.7em; /* Remove height trick - line 2. */
+        width: 100%;
+        padding-right: 5.5em; /* Padding for actions */
+      }
+      .description {
+        width: 100%;
+        max-width: 100%;
+      }
+      .actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        a i {
+          color: $white;
+        }
+      }
+    }
+    .add-link {
+      .name { padding-right: 1em; }
+      .description { text-align: center; }
+    }
+  }
+}
+
 /* Modal window with form */
+
 .modal-overlay {
   display: none;
   position: fixed;

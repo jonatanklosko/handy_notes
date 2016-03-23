@@ -18,8 +18,17 @@ onPage 'linksets show', ->
     $('.cancel').on 'click', (e) ->
       e.preventDefault()
       $('.modal-overlay').hide()
+    # Hide modal when Escape is clicked
+    $(document).keyup (e) ->
+      if e.keyCode == 27
+        $('.modal-overlay').hide()
+        
   
   # Make whole link div clickable
   $('.links').on 'click', '.link', (e) ->
-    unless $(e.target).is '.name a'
+    unless $(e.target).is 'a, a i'
       $(this).find('.name a').get(0).click()
+  
+  # Show modal when edit icon is clicked
+  $('.links').on 'click', '.link .actions a[href*="edit"]', ->
+    $('.modal-overlay').show()

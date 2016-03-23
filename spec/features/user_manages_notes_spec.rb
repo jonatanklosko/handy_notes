@@ -37,11 +37,12 @@ feature "User manages notes" do
     visit root_path
     click_on "Example title"
     click_on "Delete"
-    # Confirm
+    # Confirm (wait for message box to appear)
+    sleep 0.5
     click_on "Yes"
     
     visit root_path
-    expect(page).to_not have_content "Example note"
+    expect(page).to_not have_content "Example title"
   end
   
   scenario "User deletes a note from his dashboard using ajax", js: true do

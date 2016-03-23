@@ -258,4 +258,57 @@ shared_examples_for "UserDocumentsController" do |document_class, document_type|
       end
     end
   end
+  
+  describe "DELETE #destroy" do
+    let(:user) { create(:user) }
+    let!(:document) { create(document_type, user: user) }
+    
+    context "as a correct user" do   
+      before do
+        sign_in user
+      end
+      
+      it "decreases the count of #{document_type}s that blongs to the user" do
+        expect {
+          delete :destroy, username: user.username, slug: document.slug
+        }.to change{ user.send(document_type.to_s.pluralize).count }.by(-1)
+      end
+      
+      it "redirects to root url" do
+        delete :destroy, username: user.username, slug: document.slug
+        expect(response).to redirect_to root_url
+      end
+    end
+    
+    context "when not signed in" do
+      it "does not change the count of #{document_type}s" do
+        expect {
+          delete :destroy, username: user.username, slug: document.slug
+        }.to_not change{ document_class.count }
+      end
+      
+      it "redirects to sign in url" do
+        delete :destroy, username: user.username, slug: document.slug
+        expect(response).to redirect_to signin_url
+      end
+    end
+    
+    context "as another user" do
+      let(:other_user) { create(:user) }
+      before do
+        sign_in other_user
+      end
+      
+      it "does not change the count of #{document_type}s" do
+        expect {
+          delete :destroy, username: user.username, slug: document.slug
+        }.to_not change{ document_class.count }
+      end
+      
+      it "redirects to sign root url" do
+        delete :destroy, username: user.username, slug: document.slug
+        expect(response).to redirect_to root_url
+      end
+    end
+  end
 end

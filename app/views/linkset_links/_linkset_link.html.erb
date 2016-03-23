@@ -1,7 +1,22 @@
-<div class="link">
+<div class="link" id="link-<%= linkset_link.id %>">
   <div class="name">
     <%= link_to linkset_link.name, linkset_link.url, target: "_blank",
                                                      rel: "nofollow" %>
   </div>
   <div class="description"><%= linkset_link.description %></div>
+  <% if signed_in_as_owner? %>
+    <nav class="actions">
+      <%= link_to icon('pencil'),
+            edit_linkset_link_path(@user, @linkset, linkset_link),
+            remote: true %>
+      <%= link_to icon('trash'),
+            linkset_link_path(@user, @linkset, linkset_link),
+            method: :delete, remote: true, data: {
+              confirm: "Are you sure?",
+              text: "'#{linkset_link.name}' will be deleted.",
+              :'confirm-button-text' => 'Yes',
+              :'cancel-button-text' => 'No',
+              :'confirm-button-color' => '#FF4D63' } %>
+    </nav>
+  <% end %>
 </div>

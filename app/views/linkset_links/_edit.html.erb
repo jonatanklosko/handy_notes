@@ -1,0 +1,10 @@
+<h2><%= @link.name %></h2>
+<%= form_for @link, url: linkset_link_path(@user, @linkset, @link),
+    remote: true do |f| %>
+    
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.text_field :url, placeholder: "Url" %>
+  <%= f.text_field :description, placeholder: "Description" %>
+  <%= link_to "Cancel", "#", class: "cancel" %>
+  <%= f.submit "Save" %>
+<% end %>
